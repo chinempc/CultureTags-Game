@@ -1,12 +1,20 @@
 # CultureTags-Game
 CultureTags game created in Python
 
+
+
 Project #3 - Cultural Tags
 Video Link - https://www.youtube.com/watch?v=6ellzNUXle0
 Rule Link  - https://culturetags.com/pages/how-to-play
+
+
+
 Language:  Python
 
+
 Programers:Nicholas Waugh, Chukwuebuka Chinemere,Emmanuel Isidahomen
+
+
 
 Requirements.
 The game should have a menu of functions
@@ -26,6 +34,8 @@ There should be at least 10 cards to start the game by default
 Option 3 - Add New Cards
 The user should be able to add the card (question & answer) and any other relevant data to the application.  
 The game should confirm the user’s input has been added and show the last 3 cards that have been added to the system
+
+
 
 Considerations
 What did you do to make sure that the answers that users enter match what is saved on the card? (i.e. typos, case sensitivity, etc.)
