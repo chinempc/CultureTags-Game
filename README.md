@@ -4,8 +4,10 @@ CultureTags game created in Python
 Project #3 - Cultural Tags
 Video Link - https://www.youtube.com/watch?v=6ellzNUXle0
 Language:  Python
+
 Programers:Nicholas Waugh, Chukwuebuka Chinemere,Emmanuel Isidahomen
-Requirements
+Requirements.
+
 The game should have a menu of functions
 Option 1 - Instructions
 The game should tell the user the instructions to the game
