@@ -3,6 +3,7 @@ CultureTags game created in Python
 
 Project #3 - Cultural Tags
 Video Link - https://www.youtube.com/watch?v=6ellzNUXle0
+Rule Link  - https://culturetags.com/pages/how-to-play
 Language:  Python
 
 Programers:Nicholas Waugh, Chukwuebuka Chinemere,Emmanuel Isidahomen
