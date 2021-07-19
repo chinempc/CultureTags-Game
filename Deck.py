@@ -47,6 +47,6 @@ class Deck: #This Deck will get the card details from the Culture_Tag.csv, conve
         data.loc[newrow,'Category']=Category
         data.loc[newrow,'Hint']=Hint
         data.to_csv('Test.csv',index=False)
-        self.ClearDeck()
-        self.GenerateDeck()
-
+        A=Card(Question,Answer,Category,Hint)
+        self.Deck.append(A)
+        self.DeckString.append(str(A))
