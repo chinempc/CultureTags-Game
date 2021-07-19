@@ -32,8 +32,21 @@ class Deck: #This Deck will get the card details from the Culture_Tag.csv, conve
             A=Card(row['ACR'],row['ANS'],row['Category'],row['Hint'])
             self.Deck.append(A)
             self.DeckString.append(str(A))
-
+    def ClearDeck(self):
+        self.Deck.clear()
+        self.DeckString.clear()
     def ShuffleDeck(self):random.shuffle(self.Deck) #Use the random function to shuffle deck
     def ReadDeck(self):print(self.DeckString)
     def ReadTopCard(self):print(self.Deck[len(self.Deck)-1])
     def ReadBottomCard(self): print(self.Deck[0])
+    def CreateCard(self,Question:str,Answer:str,Category:str="?",Hint:str="?"):
+        data = pd.read_csv('Culture_Tag.csv', encoding="ISO-8859-1")
+        newrow=data.shape[0]+1
+        data.loc[newrow,'ACR']=Question
+        data.loc[newrow,'ANS']=Answer
+        data.loc[newrow,'Category']=Category
+        data.loc[newrow,'Hint']=Hint
+        data.to_csv('Test.csv',index=False)
+        self.ClearDeck()
+        self.GenerateDeck()
+
