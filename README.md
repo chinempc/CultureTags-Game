@@ -1,9 +1,11 @@
 # CultureTags-Game
+
 CultureTags game created in Python
 
+![image](https://user-images.githubusercontent.com/50160339/126397297-7553100c-1e35-415a-8c4c-f4afe4ea0ea0.png)
 
 
-Project #3 - Cultural Tags
+Cultural Tags
 Video Link - https://www.youtube.com/watch?v=6ellzNUXle0
 Rule Link  - https://culturetags.com/pages/how-to-play
 
