@@ -20,7 +20,7 @@ Programers:Nicholas Waugh, Chukwuebuka Chinemere,Emmanuel Isidahomen
 
 
 
-Requirements.
+Requirements
 ---
 
 The game should have a menu of functions
