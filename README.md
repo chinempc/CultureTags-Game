@@ -15,7 +15,7 @@ Rule Link  - https://culturetags.com/pages/how-to-play
 
 Language:  Python
 
-Programers:Nicholas Waugh, Chukwuebuka Chinemere, Emmanuel Isidahomen
+Programers:Nicholas Waugh, Chukwuebuka Chinemere, Emmanuel Isidahomen, Angel Patterson
 
 
 Requirements
@@ -28,14 +28,14 @@ The game should tell the user the instructions to the game
 
 - Option 2 - Play Game
 Then the game will ask for the number of players
-Then ask for the names of the players
+Next you will be askd for the names of the players
 Then the game will give the card to player #1
 
 - Player #1 will answer the question
 If the answer is correct, the player will receive three points
 If the answer is incorrect, the player will lose one point and be able to try again
 Once the question is answered the game should confirm the correct answer show the leaderboard and move on to the next player and next question
-A user should be able to skip their turn (if they want)
+A user should be able to skip their turn (only if they want to)
 After everyone has had a turn the game should show the current leader and ask if the players want to play another round
 There should be at least 10 cards to start the game by default
 
