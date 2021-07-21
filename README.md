@@ -14,10 +14,8 @@ Rule Link  - https://culturetags.com/pages/how-to-play
 
 
 Language:  Python
---
 
 Programers:Nicholas Waugh, Chukwuebuka Chinemere, Emmanuel Isidahomen
---
 
 
 Requirements
