@@ -45,4 +45,8 @@ The game should confirm the user’s input has been added and show the last 3 ca
 
 Considerations
 ---
-What did you do to make sure that the answers that users enter match what is saved on the card? (i.e. typos, case sensitivity, etc.) How is the card data being stored? What data structure is used? Why was that ADT chosen compared to other ADTs? Assume that the number of cards can be a very large number. 
+What did you do to make sure that the answers that users enter match what is saved on the card? (i.e. typos, case sensitivity, etc.) 
+- How is the card data being stored? 
+- What data structure is used? 
+- Why was that ADT chosen compared to other ADTs? 
+- Assume that the number of cards can be a very large number. 
