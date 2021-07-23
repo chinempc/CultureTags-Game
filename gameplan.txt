@@ -56,6 +56,7 @@ Game {}:
 			- Prompt the user to enter the number of players
 			- Loop through and fill the players list with the names of each player
 			- Print out the first card in the deck under "Player 1's turn"
+				- Regex (RE class) may be used #Don't punish the player method
 			- If they get it right increment the player's score by 3. Else decrement
 			- Show the right answer and print out the scoreboard.
 			- Rotate to the next player
@@ -68,4 +69,3 @@ Player {}
 	Variables:
 		- Name: String
 		- Score: Int (10)
-	
