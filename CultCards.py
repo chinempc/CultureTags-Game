@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 # What does import pandas as pd mean
 #------------------------------------
 #Import = “Bring this functionality or library to my python script”
@@ -28,6 +30,10 @@ class Card: #Data set that allows to set all content of the card in this Data se
     def GetAnswer(self): return self.Answer #Returns Answer
     def GetCategory(self): return self.Category #Returns Category
     def GetHint(self):return self.Hint #Returns Hint
+    def display_card(self):
+        table = [[self.Acronym], [self.Category]]
+        output = tabulate(table, tablefmt='grid')
+        print(output)
 
 class Deck: #This Deck will get the card details from the Culture_Tag.csv, convert them into card classes and store them in
     def __init__(self):
