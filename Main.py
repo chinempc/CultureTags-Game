@@ -70,6 +70,16 @@ Player {}
 		- Name: String
 		- Score: Int (10)
 """
+import CultCards as CC
+import re
+class Player:
+    def __init__(self):
+        self.__Name="Guest"
+        self.__Score=0
+    def AddScore(self, score): self.__Score+= score
+    def ShowScore(self): return self.__Score
+    def GetName(self, name): self.__Name=name
+    def ReadName(self): return self.__Name
 class GameManager():
     def __init__(self):
         pass
