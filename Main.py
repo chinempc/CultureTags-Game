@@ -81,15 +81,57 @@ class Player:
     def GetName(self, name): self.__Name=name
     def ReadName(self): return self.__Name
 class GameManager():
-    def __init__(self):
-        pass
-    def Instruction(self):
-        pass
-    def AddMenu(self):
-        pass
-    def Games(self):
-        pass
-    def PlayGame(self):
-        pass
-    def AddNewCard(self):
-        pass
+	def __init__(self):
+		self.PartyDeck=CC.Deck()
+	def Instruction(self):
+		pass
+	def AddMenu(self):
+		pass
+	def Games(self):
+		pass
+	def PlayGame(self):
+		pass
+
+	def AddNewCard(self):
+		Confirmation=False
+		while Confirmation==False:
+			Res=input("Enter your Cards Acronym, Answer, Category(Optional), and Hint(Optional)\n"+"[Example: JD, John Doe, Person, A name that is very anonymous\n]"+"Text: ")
+			Modify=re.split(",",Res)
+			Result=[]
+			if len(Modify)<=1 or len(Modify)>4:
+					print("CreationError: You must at least enter an Acronym and Answer and at most enter the Category and Hint\n")
+			else:
+				for i in Modify:
+					A=""
+					if i==" "or i=="":
+							A="?"
+					else:
+						if i[:1]==" " and i[-1:]==" ":
+							A=i[1:-1]
+						else:
+							if i[:1] == " ": #Check if there is a space in front of the character
+								A=i[1:]
+							elif i[-1:] == " ":
+								A=i[:-1]
+							else:
+								A=i
+					Result.append(A)
+				if len(Modify) !=4:
+					for i in range(4-len(Modify)):
+							Result.append("?")
+				if Result[1]=="?":
+					print("CreationError: You must at least enter an Acronym and Answer and at most enter the Category and Hint\n")
+					Result.clear()
+				else:
+					print(Result)
+					Confirm=input("Is this your final Result (Y/N): ")
+					Confirm=Confirm.upper()
+					if Confirm[0]=="Y":
+						Confirmation=self.PartyDeck.CreateCard(Result[0].upper(),Result[1],Result[2],Result[3])
+						if Confirmation==False:
+							print("Sorry this acronym is already taken\n")
+						else:
+							print("New Card has been created")
+					else:
+						pass
+
