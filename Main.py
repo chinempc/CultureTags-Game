@@ -1,11 +1,11 @@
 """
 Game requirements:
 
-Functions: 
+Functions:
 	- Menu(option)
 		- Displays the user's choice to them
 		- Lets the user choose between the following
-		- 1: Instructions 
+		- 1: Instructions
 		- 2: Play Game
 		- 3: Add New Cards
 	- instructions()
@@ -28,7 +28,7 @@ Functions:
 			- Question: If someone skips does the next round start before asking for another round?
 		- 10 cards to start the game at minimum. Max 10 players.
 	- newCards()
-		- Allows the user to make a new card (Question:Answer). 
+		- Allows the user to make a new card (Question:Answer).
 		- Confirm that the new card has been added and display the last 3 cards added. (Anything less than 3 show those cards).
 
 CLASSES:
@@ -42,7 +42,7 @@ Game {}:
 		Games():
 			- Calls the menu() function
 		Menu():
-			- Prints out the 3 options for the user and takes their input. 
+			- Prints out the 3 options for the user and takes their input.
 			- 1: Calls Instructions()
 			- 2: Calls playgame()
 			- 3: Calls addNewCard()
@@ -51,7 +51,7 @@ Game {}:
 			- Prints out the instructions either in a print statement or prints from a text file.
 			- Returns back to the menu function
 		playGame():
-			Variables: 
+			Variables:
 				nextRound: Int
 			- do while loop: while nextRound == "YES" (all input will be uppercased to account for typo)
 			- Prompt the user to enter the number of players
@@ -84,7 +84,14 @@ class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
 	def Instruction(self):
-		pass
+		'''
+		todo: ineractive, graphical instructions for players
+		-anas
+		'''
+		print("350 cards spanning across seven categories, this game is multigenerational with hours of play! Categories include: Black Twitter, Church, Daily Sayings, Family & Friends, Songs & Lyrics, TV & Film and Words to Live By!")
+		print("This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
+
+This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
 	def AddMenu(self):
 		pass
 	def Games(self):
@@ -134,4 +141,3 @@ class GameManager():
 							print("New Card has been created")
 					else:
 						pass
-
