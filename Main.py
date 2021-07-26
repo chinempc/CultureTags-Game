@@ -84,7 +84,10 @@ class GameManager():
     def __init__(self):
         pass
     def Instruction(self):
-        pass
+        file = open('gameInstructions.txt')
+        printable = file.read()
+        print(printable)
+        file.close()
     def AddMenu(self):
         pass
     def Games(self):
