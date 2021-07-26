@@ -1,11 +1,10 @@
 """
 Game requirements:
-
-Functions: 
+Functions:
 	- Menu(option)
 		- Displays the user's choice to them
 		- Lets the user choose between the following
-		- 1: Instructions 
+		- 1: Instructions
 		- 2: Play Game
 		- 3: Add New Cards
 	- instructions()
@@ -28,9 +27,8 @@ Functions:
 			- Question: If someone skips does the next round start before asking for another round?
 		- 10 cards to start the game at minimum. Max 10 players.
 	- newCards()
-		- Allows the user to make a new card (Question:Answer). 
+		- Allows the user to make a new card (Question:Answer).
 		- Confirm that the new card has been added and display the last 3 cards added. (Anything less than 3 show those cards).
-
 CLASSES:
 Game {}:
 	Variables:
@@ -42,7 +40,7 @@ Game {}:
 		Games():
 			- Calls the menu() function
 		Menu():
-			- Prints out the 3 options for the user and takes their input. 
+			- Prints out the 3 options for the user and takes their input.
 			- 1: Calls Instructions()
 			- 2: Calls playgame()
 			- 3: Calls addNewCard()
@@ -51,7 +49,7 @@ Game {}:
 			- Prints out the instructions either in a print statement or prints from a text file.
 			- Returns back to the menu function
 		playGame():
-			Variables: 
+			Variables:
 				nextRound: Int
 			- do while loop: while nextRound == "YES" (all input will be uppercased to account for typo)
 			- Prompt the user to enter the number of players
@@ -60,11 +58,9 @@ Game {}:
 			- If they get it right increment the player's score by 3. Else decrement
 			- Show the right answer and print out the scoreboard.
 			- Rotate to the next player
-
 Card {}
 	variables:
 		- info: Hashtable/Dictionary
-
 Player {}
 	Variables:
 		- Name: String
@@ -81,18 +77,63 @@ class Player:
     def GetName(self, name): self.__Name=name
     def ReadName(self): return self.__Name
 class GameManager():
-    def __init__(self):
-        pass
-    def Instruction(self):
-        file = open('gameInstructions.txt')
-        printable = file.read()
-        print(printable)
-        file.close()
-    def AddMenu(self):
-        pass
-    def Games(self):
-        pass
-    def PlayGame(self):
-        pass
-    def AddNewCard(self):
-        pass
+	def __init__(self):
+		self.PartyDeck=CC.Deck()
+	def Instruction(self):
+		'''
+		todo: ineractive, graphical instructions for players
+		-anas
+		'''
+		print("350 cards spanning across seven categories, this game is multigenerational with hours of play! Categories include: Black Twitter, Church, Daily Sayings, Family & Friends, Songs & Lyrics, TV & Film and Words to Live By!")
+		print("This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
+
+This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
+	def AddMenu(self):
+		pass
+	def Games(self):
+		pass
+	def PlayGame(self):
+		pass
+
+	def AddNewCard(self):
+		Confirmation=False
+		while Confirmation==False:
+			Res=input("Enter your Cards Acronym, Answer, Category(Optional), and Hint(Optional)\n"+"[Example: JD, John Doe, Person, A name that is very anonymous\n]"+"Text: ")
+			Modify=re.split(",",Res)
+			Result=[]
+			if len(Modify)<=1 or len(Modify)>4:
+					print("CreationError: You must at least enter an Acronym and Answer and at most enter the Category and Hint\n")
+			else:
+				for i in Modify:
+					A=""
+					if i==" "or i=="":
+							A="?"
+					else:
+						if i[:1]==" " and i[-1:]==" ":
+							A=i[1:-1]
+						else:
+							if i[:1] == " ": #Check if there is a space in front of the character
+								A=i[1:]
+							elif i[-1:] == " ":
+								A=i[:-1]
+							else:
+								A=i
+					Result.append(A)
+				if len(Modify) !=4:
+					for i in range(4-len(Modify)):
+							Result.append("?")
+				if Result[1]=="?":
+					print("CreationError: You must at least enter an Acronym and Answer and at most enter the Category and Hint\n")
+					Result.clear()
+				else:
+					print(Result)
+					Confirm=input("Is this your final Result (Y/N): ")
+					Confirm=Confirm.upper()
+					if Confirm[0]=="Y":
+						Confirmation=self.PartyDeck.CreateCard(Result[0].upper(),Result[1],Result[2],Result[3])
+						if Confirmation==False:
+							print("Sorry this acronym is already taken\n")
+						else:
+							print("New Card has been created")
+					else:
+						pass
