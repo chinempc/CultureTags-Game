@@ -67,6 +67,7 @@ Player {}
 		- Score: Int (10)
 """
 import CultCards as CC
+from CultCards import tabulate
 import re
 class Player:
     def __init__(self):
@@ -80,16 +81,27 @@ class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
 	def Instruction(self):
-		file = open('gameInstructions.txt', 'r')
-		file_contents = f.read()
-		print (file_contents)
-		file.close()
+		with open('gameInstructions.txt', 'r') as f:
+			file_contents = f.read()
+			print (file_contents)
 
-	def AddMenu(self):
+	def Menu(self):
+    		SelectionScreen=[["---Culture Tag Menu---"],["1.) Instructions"],["2.) Start Game"],["3.) Add a Card"],["4.) Quit"]]
+		ScreenDisplay=tabulate(SelectionScreen,tablefmt="pretty")
+		print(ScreenDisplay)
+		UserInput=input("Enter the respectful options above: ")
+		while UserInput<0 and UserInput>4:
+    			UserInput=input("Invalid input enter 1,2,3 or 4")
+			if UserInput ==1: self.Instruction()
+			elif UserInput==2: self.PlayGame()
+			elif UserInput==3: self.AddNewCard()
+			elif UserInput==4: print("Leave Game")
+
+	def AddPlayer(self):
 		pass
 	def Games(self):
 		pass
-	def PlayGame(self):
+	def PlayGame(self):#Game Logic
 		pass
 
 	def AddNewCard(self):
@@ -139,5 +151,5 @@ def main():
 	game1 = GameManager()
 	game1.menu()
 				
-if __name__ == "__main__"
+if __name__ == "__main__":
 	main()
