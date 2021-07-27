@@ -80,13 +80,10 @@ class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
 	def Instruction(self):
-		'''
-		todo: ineractive, graphical instructions for players
-		-anas
-		'''
-		print("350 cards spanning across seven categories, this game is multigenerational with hours of play! Categories include: Black Twitter, Church, Daily Sayings, Family & Friends, Songs & Lyrics, TV & Film and Words to Live By!")
-		print("This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
-
+		file = open('instruction.txt', 'r')
+		file_contents = f.read()
+		print (file_contents)
+		file.close()
 This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
 	def AddMenu(self):
 		pass
