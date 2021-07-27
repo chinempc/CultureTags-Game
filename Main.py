@@ -84,7 +84,7 @@ class GameManager():
 		file_contents = f.read()
 		print (file_contents)
 		file.close()
-This viral game is simple to play (or is it?). Grab a card, show your team the #CultureTag (acronym) and give hints to help them guess the phrase without saying what it is. Can’t figure it out? Pass! Just get through as many answers as possible before your time runs out!")
+
 	def AddMenu(self):
 		pass
 	def Games(self):
