@@ -137,3 +137,10 @@ This viral game is simple to play (or is it?). Grab a card, show your team the #
 							print("New Card has been created")
 					else:
 						pass
+
+def main():
+	game1 = GameManager()
+	game1.menu()
+				
+if __name__ == "__main__"
+	main()
