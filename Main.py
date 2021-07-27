@@ -80,7 +80,7 @@ class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
 	def Instruction(self):
-		file = open('instruction.txt', 'r')
+		file = open('gameInstructions.txt', 'r')
 		file_contents = f.read()
 		print (file_contents)
 		file.close()
