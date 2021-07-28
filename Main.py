@@ -74,16 +74,40 @@ class Player:
 		self.__Name="Guest"
 		self.__Score=0
 	def AddScore(self, score:int): self.__Score+= score
-	def ShowScore(self): return self.__Score
+	def GetScore(self): return self.__Score
 	def GetName(self, name): self.__Name=name
 	def ReadName(self):
 			return self.__Name
 	def __str__(self):
     		return f'{self.__Name}, Score: {self.__Score}'
+
+class LeaderBoard():
+    def __init__(self):
+    			self.Players={}
+    def AddtoLeaderBoard(self, Players:dict):
+		    self.Players=Players
+    def SortLeaderBoard(self):
+            PlayerList=list(self.Players)
+            n=len(PlayerList)
+            for i in range(n-1):
+                for j in range(0,n-i-1):
+                   if PlayerList[j][1].GetScore() > PlayerList[j+1][1].GetScore():
+                      PlayerList[j],PlayerList[j+1] = PlayerList[j+1], PlayerList[j]
+            self.Players=dict(PlayerList)
+    def GetWinners(self):
+            Winners=[]
+            BigScores=0
+            PlayerList=list(self.Players)
+            for i in range(len(PlayerList)):
+                pass
+    def ShowLeaderBoard(self):
+            for key in self.Players.keys():
+                print(key+"-->"+str(self.Players[key]))
 class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
 		self.PlayerLimit=10
+		self.GameLB=LeaderBoard()
 		self.Players={}
 	def Instruction(self):
 		with open('gameInstructions.txt', 'r') as f:
@@ -116,10 +140,9 @@ class GameManager():
 				name=input("Enter your name: ")
 				NewPlayer.GetName(name)
 				self.Players[PlayerType]=NewPlayer
-	def ListofPlayers(self):
-    		for key in self.Players.keys():
-    				print(key+"-->"+str(self.Players[key]))
+		self.GameLB.AddtoLeaderBoard(self.Players)
 
+	
 	def PlayGame(self):#Game Logic
 		pass
 
