@@ -70,37 +70,56 @@ import CultCards as CC
 from CultCards import tabulate
 import re
 class Player:
-    def __init__(self):
-        self.__Name="Guest"
-        self.__Score=0
-    def AddScore(self, score): self.__Score+= score
-    def ShowScore(self): return self.__Score
-    def GetName(self, name): self.__Name=name
-    def ReadName(self): return self.__Name
+	def __init__(self):
+		self.__Name="Guest"
+		self.__Score=0
+	def AddScore(self, score:int): self.__Score+= score
+	def ShowScore(self): return self.__Score
+	def GetName(self, name): self.__Name=name
+	def ReadName(self):
+			return self.__Name
+	def __str__(self):
+    		return f'{self.__Name}, Score: {self.__Score}'
 class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
+		self.PlayerLimit=10
+		self.Players={}
 	def Instruction(self):
 		with open('gameInstructions.txt', 'r') as f:
 			file_contents = f.read()
 			print (file_contents)
 
 	def Menu(self):
-    		SelectionScreen=[["---Culture Tag Menu---"],["1.) Instructions"],["2.) Start Game"],["3.) Add a Card"],["4.) Quit"]]
+		Online=True
+		SelectionScreen=[["---Culture Tag Menu---"],["1.) Instructions"],["2.) Start Game"],["3.) Add a Card"],["4.) Quit"]]
 		ScreenDisplay=tabulate(SelectionScreen,tablefmt="pretty")
-		print(ScreenDisplay)
-		UserInput=input("Enter the respectful options above: ")
-		while UserInput<0 and UserInput>4:
-    			UserInput=input("Invalid input enter 1,2,3 or 4")
-			if UserInput ==1: self.Instruction()
+		while Online:
+			print(ScreenDisplay)
+			UserInput=input("Enter the respectful options above: ")
+			while UserInput<0 and UserInput>4:
+					UserInput=input("Invalid input enter 1,2,3 or 4")
+			if UserInput == 1:self.Instruction()
 			elif UserInput==2: self.PlayGame()
 			elif UserInput==3: self.AddNewCard()
-			elif UserInput==4: print("Leave Game")
+			elif UserInput==4:
+					print("Good Bye")
+					Online=False
 
 	def AddPlayer(self):
-		pass
-	def Games(self):
-		pass
+		NumofPlayers=int(input("Enter the number of players in this game: "))
+		while NumofPlayers>self.PlayerLimit or NumofPlayers<0:
+    			NumofPlayers=int(input("Invalid input there must be a number that is at least yourself or at most 10 people\nEnter the number of players: "))
+		for i in range(NumofPlayers):
+				NewPlayer=Player()
+				PlayerType="Player "+str(i+1)
+				name=input("Enter your name: ")
+				NewPlayer.GetName(name)
+				self.Players[PlayerType]=NewPlayer
+	def ListofPlayers(self):
+    		for key in self.Players.keys():
+    				print(key+"-->"+str(self.Players[key]))
+
 	def PlayGame(self):#Game Logic
 		pass
 
@@ -149,7 +168,6 @@ class GameManager():
 
 def main():
 	game1 = GameManager()
-	game1.menu()
-				
+	game1.Menu()
 if __name__ == "__main__":
 	main()
