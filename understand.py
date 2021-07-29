@@ -1,4 +1,5 @@
-
+import time
+from threading import Thread
 
 # Player class
 class Player:
@@ -135,6 +136,17 @@ class gameManager:
             NewPlayer = Player(name)
             self.Players.append(NewPlayer)
         self.LeaderBoard = self.Players      # Leaderboard is ordered from 
+	
+    def AnswerQuestion(self):             
+    	answer = None
+    	def timeout():
+        	time.sleep(90)              # 90 seconds to answer question       
+        	if answer != None:
+            		return
+        	print("Times Up")
+    	Thread(target = timeout).start()
+    	answer = input("Input answer: ")
+    	return answer
 
 
 '''
