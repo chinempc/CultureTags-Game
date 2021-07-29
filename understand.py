@@ -122,7 +122,7 @@ class gameManager:
 
     def AddPlayer(self):
         NumofPlayers = int(input("Enter the number of players in this game: "))
-        print(f"You said there were {NumofPlayers} players")
+        print(f"There will be {NumofPlayers} players in this game.")
         while NumofPlayers > self.PlayerLimit or NumofPlayers < 0:
             NumofPlayers = int(input("INVALID INPUT! Must be between 1 and 10.\n# of players: "))
         for i in range(NumofPlayers):   # ISSUE: INFINTE LOOP
@@ -134,7 +134,7 @@ class gameManager:
                 check = input(f"{name}, is that correct?\n(yes or no): ")
             NewPlayer = Player(name)
             self.Players.append(NewPlayer)
-        self.Player = self.LeaderBoard      # Leaderboard is ordered from 
+        self.LeaderBoard = self.Players      # Leaderboard is ordered from 
 
 
 '''
