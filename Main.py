@@ -68,6 +68,8 @@ Player {}
 """
 import CultCards as CC
 from CultCards import tabulate
+import time
+import os
 import re
 class Player:
 	def __init__(self):
@@ -76,14 +78,15 @@ class Player:
 	def AddScore(self, score:int): self.__Score+= score
 	def GetScore(self): return self.__Score
 	def GetName(self, name): self.__Name=name
-	def ReadName(self):
+	def SetName(self):
 			return self.__Name
 	def __str__(self):
     		return f'{self.__Name}, Score: {self.__Score}'
 
 class LeaderBoard():
     def __init__(self):
-    			self.Players={}
+			self.Players={}
+			self.Winners = []
     def AddtoLeaderBoard(self, Players:dict):
 		    self.Players=Players
     def SortLeaderBoard(self):
@@ -95,11 +98,15 @@ class LeaderBoard():
                       PlayerList[j],PlayerList[j+1] = PlayerList[j+1], PlayerList[j]
             self.Players=dict(PlayerList)
     def GetWinners(self):
-            Winners=[]
-            BigScores=0
-            PlayerList=list(self.Players)
-            for i in range(len(PlayerList)):
-                pass
+            self.SortLeaderBoard()
+            PlayerList=list(self.Players.values())
+            self.Winners.append(str(PlayerList[0]))
+            HighestScore=PlayerList[0].GetScore()
+            for i in range(1,len(PlayerList)):
+                 if PlayerList[i] == HighestScore:
+                    self.Winners.append(str(PlayerList[i]))
+    def DisplayWinners(self):
+			print(self.Winners)
     def ShowLeaderBoard(self):
             for key in self.Players.keys():
                 print(key+"-->"+str(self.Players[key]))
@@ -109,6 +116,7 @@ class GameManager():
 		self.PlayerLimit=10
 		self.GameLB=LeaderBoard()
 		self.Players={}
+		self.PresentedCard=None
 	def Instruction(self):
 		with open('gameInstructions.txt', 'r') as f:
 			file_contents = f.read()
@@ -142,10 +150,47 @@ class GameManager():
 				self.Players[PlayerType]=NewPlayer
 		self.GameLB.AddtoLeaderBoard(self.Players)
 
-	
-	def PlayGame(self):#Game Logic
-		pass
 
+	def PlayGame(self):#Game Logic
+		playing=True
+		Confirm=""
+		rounds=0
+		self.AddPlayer()
+		while playing==True:
+			rounds+=1
+			for key in self.Players.keys():
+				print(str(key)+" "+str(self.Players[key].SetName())+" Are you ready? press any key to continue: ")
+				Ready=input()
+				self.PresentedCard = self.PartyDeck[len(self.PartyDeck) - 1]
+				self.PartyDeck.ReadTopCard()
+				Response=self.AnswerQuestion()
+				if Response == "Timelimit":
+					print("You blew it you didn't answer in time you lose a point")
+					self.Players[key].AddScore(-1)
+				elif Response == "Pass":
+					print("Ok you wont answer that's fair")
+				elif Response == True:
+					print("Correct 3 point")
+					self.Players[key].AddScore(3)
+				elif Response == False:
+					print("Incorrect the answer is "+ str(self.PresentedCard.GetAnswer()))
+					self.Players[key].AddScore(-1)
+				self.PartyDeck.pop()
+				self.PartyDeck.ShuffleDeck()
+				self.GameLB.SortLeaderBoard()
+				self.GameLB.ShowLeaderBoard()
+			Confirm=input("Want to play again(y/n)?: ")
+			Confirm=Confirm.upper
+			while Confirm[0]!="Y" or Confirm!="N":
+				Confirm=input("Invalid input Try entering yes or no")
+				Confirm=Confirm.upper()
+			if Confirm[0]=="Y":
+				pass
+			elif Confirm[0]=="N":
+				print("And that's the game Here your winners")
+				self.GameLB.GetWinners()
+				self.GameLB.DisplayWinners()
+				self.GameLB.ShowLeaderBoard()
 	def AddNewCard(self):
 		Confirmation=False
 		while Confirmation==False:
@@ -189,6 +234,41 @@ class GameManager():
 					else:
 						pass
 
+	def CheckAnswer(self,Response):
+		Answer= self.PresentedCard.GetAnswer()
+		A = Answer.replace(" ", "")
+		B = Response.replace(" ","")
+		while len(B) > len(A) or len(B)<len(A):
+			if len(B) > len(A):
+				B=B[:-1]
+			elif len(B)<len(A):
+				B+=" "
+		A=A.upper()
+		B=B.upper()
+		Character=0.0
+		for i in range(len(A)):
+			if B[i]==A[i]:
+				Character+=1.0
+			else:
+				pass
+		Accuracy=Character/len(A)
+		if Accuracy > .60:
+			return True
+		else:
+			return False
+	def AnswerQuestion(self):
+		timer=time.time()+90
+		Correct=False
+		Answer=input("Say Something to pass the answer Just say 1: ")
+		if time.time()>timer and Answer[0]!="1": #If time exceed the time limit and Answer is not 1
+			Answer="TimeLimit"
+			return Answer
+		elif Answer[0]=="1": #If Answer=1 then call a pass
+			Answer="Pass"
+			return Answer
+		else:
+			Correct=self.CheckAnswer(Answer)
+		return Correct
 def main():
 	game1 = GameManager()
 	game1.Menu()

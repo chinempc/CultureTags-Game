@@ -21,7 +21,7 @@ class Card:
     def SetAns(self, ans): self.__Answer = ans
 
     def GetAns(self): return self.__Category
-    def SetAns(self, ans): self.__Category = cat
+    def SetAns(self, cat): self.__Category = cat
 
     def GetHint(self): return self.__Hint
     def SetHint(self, hint): self.__Hint = hint
@@ -48,7 +48,7 @@ class Deck:
 
         # If the max rounds is hit then move to the nearest tenth
         elif self.rounds == self.maxRounds:
-            next(csvFile + )
+            next(csvFile + "Bruh")
 
 
     
