@@ -85,8 +85,8 @@ class Player:
 
 class LeaderBoard():
     def __init__(self):
-			self.Players={}
-			self.Winners = []
+            self.Players={}
+            self.Winners = []
     def AddtoLeaderBoard(self, Players:dict):
 		    self.Players=Players
     def SortLeaderBoard(self):
@@ -106,7 +106,7 @@ class LeaderBoard():
                  if PlayerList[i] == HighestScore:
                     self.Winners.append(str(PlayerList[i]))
     def DisplayWinners(self):
-			print(self.Winners)
+            print(self.Winners)
     def ShowLeaderBoard(self):
             for key in self.Players.keys():
                 print(key+"-->"+str(self.Players[key]))
@@ -128,7 +128,7 @@ class GameManager():
 		ScreenDisplay=tabulate(SelectionScreen,tablefmt="pretty")
 		while Online:
 			print(ScreenDisplay)
-			UserInput=input("Enter the respectful options above: ")
+			UserInput=int(input("Enter the respectful options above: "))
 			while UserInput<0 and UserInput>4:
 					UserInput=input("Invalid input enter 1,2,3 or 4")
 			if UserInput == 1:self.Instruction()
