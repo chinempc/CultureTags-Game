@@ -168,6 +168,7 @@ class GameManager():
 				Ready=input()
 				self.PresentedCard = self.PartyDeck[len(self.PartyDeck) - 1]
 				self.PartyDeck.ReadTopCard()
+				print(self.PresentedCard.GetHint())
 				Response=self.AnswerQuestion()
 				if Response == "Timelimit":
 					print("You blew it you didn't answer in time you lose a point")
@@ -175,7 +176,7 @@ class GameManager():
 				elif Response == "Pass":
 					print("Ok you wont answer that's fair")
 				elif Response == True:
-					print("Correct 3 point")
+					print("Correct 3 point The answer is "+str(self.PresentedCard.GetAnswer()))
 					self.Players[key].AddScore(3)
 				elif Response == False:
 					print("Incorrect the answer is "+ str(self.PresentedCard.GetAnswer()))
@@ -185,7 +186,7 @@ class GameManager():
 				self.GameLB.SortLeaderBoard()
 				self.GameLB.ShowLeaderBoard()
 			Confirm=input("Want to play again(y/n)?: ")
-			Confirm=Confirm.upper
+			Confirm=Confirm.upper()
 			while Confirm[0]!="Y" or Confirm!="N":
 				Confirm=input("Invalid input Try entering yes or no")
 				Confirm=Confirm.upper()
