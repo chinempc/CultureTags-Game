@@ -85,31 +85,36 @@ class Player:
 
 class LeaderBoard():
     def __init__(self):
-			self.Players={}
-			self.Winners = []
+		self.Players={}
+		self.Winners = []
+
     def AddtoLeaderBoard(self, Players:dict):
-		    self.Players=Players
+		self.Players=Players
     def SortLeaderBoard(self):
-            PlayerList=list(self.Players)
-            n=len(PlayerList)
-            for i in range(n-1):
-                for j in range(0,n-i-1):
-                   if PlayerList[j][1].GetScore() > PlayerList[j+1][1].GetScore():
-                      PlayerList[j],PlayerList[j+1] = PlayerList[j+1], PlayerList[j]
-            self.Players=dict(PlayerList)
+		PlayerList=list(self.Players)
+		n=len(PlayerList)
+		for i in range(n-1):
+			for j in range(0,n-i-1):
+				if PlayerList[j][1].GetScore() > PlayerList[j+1][1].GetScore():
+					PlayerList[j],PlayerList[j+1] = PlayerList[j+1], PlayerList[j]
+					self.Players=dict(PlayerList)
+
     def GetWinners(self):
-            self.SortLeaderBoard()
-            PlayerList=list(self.Players.values())
-            self.Winners.append(str(PlayerList[0]))
-            HighestScore=PlayerList[0].GetScore()
-            for i in range(1,len(PlayerList)):
-                 if PlayerList[i] == HighestScore:
-                    self.Winners.append(str(PlayerList[i]))
-    def DisplayWinners(self):
-			print(self.Winners)
+		self.SortLeaderBoard()
+		PlayerList=list(self.Players.values())
+		self.Winners.append(str(PlayerList[0]))
+		HighestScore=PlayerList[0].GetScore()
+		for i in range(1,len(PlayerList)):
+			if PlayerList[i] == HighestScore:
+				self.Winners.append(str(PlayerList[i]))
+
+    def DisplayWinners(self):	print(self.Winners)
+
     def ShowLeaderBoard(self):
-            for key in self.Players.keys():
-                print(key+"-->"+str(self.Players[key]))
+		for key in self.Players.keys():
+			print(key+"-->"+str(self.Players[key]))
+
+
 class GameManager():
 	def __init__(self):
 		self.PartyDeck=CC.Deck()
