@@ -34,7 +34,7 @@ class Card: #Data set that allows to set all content of the card in this Data se
     def GetCategory(self): return self.__Category #Returns Category
     def GetHint(self):return self.__Hint #Returns Hint
     def GetFrontofCard(self):
-        CardText= [["Category: "+self.__Category],["Acronym: "+self.__Acronym]]
+        CardText= [["Category: "+self.__Category],["Acronym: "+self.__Acronym], ["Hint: " + self.__Hint]]
         CardDisplay=tabulate(CardText, tablefmt="fancy-grid")
         return CardDisplay
     def GetBackofCard(self):
