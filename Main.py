@@ -1,4 +1,5 @@
 """
+Lol
 Game requirements:
 Functions:
 	- Menu(option)
