@@ -8,6 +8,7 @@ Game Insturctions |
 -------------------
 
 Prints the current page you're on :)
+-----------------------------------------------------------------------
 
 -----------
 Play Game |
@@ -17,21 +18,16 @@ Here are the steps you can expect to see in the game:
 ------------------------------------------------------------------------
 1. The computer will ask you how many people are playing the game. 
 ->Min: 1
-->Max: 5
+->Max: 10
 2. Then each player is to enter their name for score keeping purposes. 
-3. Each player will be given a card and given the option to skip their turn except for player 1 when starting the game.
+3. Each player will be given a card and given the option to skip their turn. If you do skip, you will recieve another turn at the end of the round.
 ->If answered correctly:
 --->Player recieves a +3 to their score
 ->If answered incorrectly:
---->Player revieves a -1 to their score and is given another go to get it right.
+--->Player revieves a -1 to their score and is given another chance to get it right.
 4. After every player has had a turn, the leader board will be displayed and the round will be over. You can then choose to end there or go to another round. 
-
-
-RULES:
 -----------------------------------------------------------------------
-Replace curse words with the begining of the word. 
-Example, 
-->SYMFM = Shut your m f mouth
+
 
 --------------
 Add New Card |
@@ -40,6 +36,14 @@ Add New Card |
 Here is what you can expect to see in this function:
 ------------------------------------------------------------------------
 1. Allows you to input an acronym, answer, category, and hint then confirms your input.
+
+
+RULES:
+-----------------------------------------------------------------------
+Replace curse words with the begining of the word. 
+Example, 
+->SYMFM = Shut your m f mouth
+-----------------------------------------------------------------------
 
 =========================================================================
 For a full in-depth guide please visit the link below:
