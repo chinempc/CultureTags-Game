@@ -321,8 +321,10 @@ while True:
 		else:
 			Correct=self.CheckAnswer(Answer)
 		return Correct
+		
 def main():
 	game1 = GameManager()
 	game1.Menu()
+	
 if __name__ == "__main__":
 	main()

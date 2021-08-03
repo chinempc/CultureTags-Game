@@ -5,6 +5,7 @@ import os
 import re
 from threading import Timer
 from threading import Thread
+import pygame
 
 # Player class
 class Player: 
@@ -80,6 +81,48 @@ class GameManager():
             print(FileContents)
         print("\n\n\n")
 
+        '''
+        pygame.init()
+        SIZE = WIDTH, HEIGHT = (1024, 720)
+        FPS = 30
+        screen = pygame.display.set_mode(SIZE, pygame.RESIZABLE)
+        clock = pygame.time.Clock()
+        textfile = open('gameInstructions.txt', 'r')
+        lines = textfile.readlines()
+        textInput = ''
+        for i in lines:
+            textInput = textInput + i
+            text = textInput
+        font = pygame.font.SysFont('Calibri', 12)
+        while True:
+            dt = clock.tick(FPS) / 1000
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    quit()
+            screen.fill(pygame.Color('yellow'))
+            blit_text(screen, text, (20, 20), font)
+            pygame.display.update()
+        '''
+    
+    '''
+    def blit_text(self,surface, text, pos, font, color=pygame.Color('black')):
+        words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
+        space = font.size(' ')[0]  # The width of a space.
+        max_width, max_height = surface.get_size()
+        x, y = pos
+        for line in words:
+            for word in line:
+                word_surface = font.render(word, 0, color)
+                word_width, word_height = word_surface.get_size()
+                if x + word_width >= max_width:
+                    x = pos[0]  # Reset the x.
+                    y += word_height  # Start on new row.
+                surface.blit(word_surface, (x, y))
+                x += word_width + space
+            x = pos[0]  # Reset the x.
+            y += word_height  # Start on new row.
+    '''
+
     def Menu(self):
         Online = True
         SelectionScreen = [["--- Culture Tag Menu ---"], ["1.) Instruction"], ["2.) Start Game"],["3.) Add a Card"],["4.) Quit"]]
@@ -152,6 +195,7 @@ class GameManager():
                     elif FalseCheck == False:     # Add logic to let them try twice
                         print("Incorrect: -1 point.\n")
                         self.Players[key].SubScore()
+                    self.PartyDeck.Deck.pop()
 
             for key in self.Players.keys():
                 if self.Players[key].GetSkip() == True:
@@ -185,7 +229,7 @@ class GameManager():
                             print("Incorrect: -1 point.\n")
                             self.Players[key].SubScore()
                     self.Players[key].SetSkip(False)
-                self.PartyDeck.Deck.pop()
+                    self.PartyDeck.Deck.pop()
                 self.PartyDeck.ShuffleDeck()
 
             self.GameLB.SortLeaderBoard()
