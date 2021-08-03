@@ -5,7 +5,6 @@ import os
 import re
 from threading import Timer
 from threading import Thread
-import pygame
 
 # Player class
 class Player: 
@@ -274,13 +273,6 @@ class GameManager():
         else:
             Correct = self.CheckAnswer(Answer)
             return Correct
-    
-    # Threading attempt does not work 
-    def TimeCounter(self):
-        for i in range(10):
-            if self.Answer != None:
-                return
-            time.sleep(1)
 
 
 
