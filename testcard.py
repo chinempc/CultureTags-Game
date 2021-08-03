@@ -123,7 +123,7 @@ class GameManager():
         while playing == True:
             rounds += 1
             for key in self.Players.keys():
-                print(f"{self.Players[key].GetName()} Ready? You will have 90 seconds to answer. \nPress Enter to continue...")
+                print(f"{self.Players[key].GetName()} are you ready?. \nPress Enter to continue...")
                 Ready = input() # Pause screen
                 self.PresentedCard = self.PartyDeck.Deck[len(self.PartyDeck.Deck) - 1]       
                 self.PartyDeck.ReadTopCard()
@@ -133,14 +133,61 @@ class GameManager():
                     self.Players[key].subScore()    # -1 score
                 elif Response == "Pass":
                     print("OK, onto the next player...We will come back to you")
+                    self.Players[key].SetSkip(True)
                 elif Response == True:
                     print("Correct: +3 Points")     # add logic to print points after each =
                     self.Players[key].AddScore()
                 elif Response == False:     # Add logic to let them try twice
-                    print("Incorrect: -1 point. You will get to try again.\n")
-                    self.Players[key].SubScore()
+                    print("Incorrect: You will get to try again.\n")
+                    FalseCheck = self.AnswerQuestion()
+                    if FalseCheck == "Timelimit":
+                        print("TIMES UP: -1 point")
+                        self.Players[key].subScore()    # -1 score
+                    elif FalseCheck == "Pass":
+                        print("OK, onto the next player...We will come back to you")
+                        self.Players[key].SetSkip(True)
+                    elif FalseCheck == True:
+                        print("Correct: +3 Points")     # add logic to print points after each =
+                        self.Players[key].AddScore()
+                    elif FalseCheck == False:     # Add logic to let them try twice
+                        print("Incorrect: -1 point.\n")
+                        self.Players[key].SubScore()
+
+            for key in self.Players.keys():
+                if self.Players[key].GetSkip() == True:
+                    print(f"{self.Players[key].GetName()} now back to you. \nPress Enter to continue...")
+                    Ready = input() # Pause screen
+                    self.PresentedCard = self.PartyDeck.Deck[len(self.PartyDeck.Deck) - 1]       
+                    self.PartyDeck.ReadTopCard()
+                    Response = self.AnswerQuestion()
+                    if Response == "Timelimit":
+                        print("TIMES UP: -1 point")
+                        self.Players[key].subScore()    # -1 score
+                    elif Response == "Pass":
+                        print("You cannot skip twice: -1 point.\n")
+                        self.Players[key].SubScore()
+                    elif Response == True:
+                        print("Correct: +3 Points")     # add logic to print points after each =
+                        self.Players[key].AddScore()
+                    elif Response == False:     # Add logic to let them try twice
+                        print("Incorrect: You will get to try again.\n")
+                        FalseCheck = self.AnswerQuestion()
+                        if FalseCheck == "Timelimit":
+                            print("TIMES UP: -1 point")
+                            self.Players[key].subScore()    # -1 score
+                        elif FalseCheck == "Pass":
+                            print("OK, onto the next player...We will come back to you")
+                            self.Players[key].SetSkip(True)
+                        elif FalseCheck == True:
+                            print("Correct: +3 Points")     # add logic to print points after each =
+                            self.Players[key].AddScore()
+                        elif FalseCheck == False:     # Add logic to let them try twice
+                            print("Incorrect: -1 point.\n")
+                            self.Players[key].SubScore()
+                    self.Players[key].SetSkip(False)
                 self.PartyDeck.Deck.pop()
                 self.PartyDeck.ShuffleDeck()
+
             self.GameLB.SortLeaderBoard()
             self.GameLB.ShowLeaderBoard()
             confirm = input("Would you like to play another round? ('N' : No | 'Y' : Yes ) \n: ")
@@ -243,10 +290,6 @@ class GameManager():
 
 def main():
     game1 = GameManager()
-    '''
-    l = CC.Deck()
-    l.ReadTopCard()
-    '''
 
 if __name__ == "__main__":
 	main()
