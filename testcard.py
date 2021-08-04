@@ -48,7 +48,7 @@ class LeaderBoard():
         HighestScore = PlayerList[0].GetScore()
         for i in range(1, len(PlayerList)):
             if PlayerList[i] == HighestScore:
-                self.Winners.append(str(self.Players[key]))
+                self.Winners.append(str(self.PlayerList[i]))
 
     def DisplayWinners(self):
         print("\n\nHere are the winners")
@@ -147,8 +147,8 @@ class GameManager():
             PlayerType = "Player " + str(i+1)
             name = input(f"Enter the name of player {i+1}: ")
             check = input(f"{name}, is that correct?\n(yes or no): ")
-            while check.lower() != "yes":
-                if check.lower() != "no":
+            while check[0].lower() != "y":
+                if check[0].lower() != "n":
                     name = input(f"I didn't get that...\nPlease Enter the name of player {i+1}: ")
                 else:
                     name = input(f"Ok, renter the name of player {i+1}: ")

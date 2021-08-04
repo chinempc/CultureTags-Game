@@ -9,6 +9,7 @@ from tabulate import tabulate
 
 import pandas as pd # Used for importing,creating and exporting a CDV file"Culture_Tag.csv"
 import random # Random generates numbers between 0 and 1.
+from collections import deque
 
 class Card: #Data set that allows to set all content of the card in this Data set
     def  __init__(self):
@@ -46,8 +47,8 @@ class Card: #Data set that allows to set all content of the card in this Data se
 
 class Deck(): #This Deck will get the card details from the Culture_Tag.csv, convert them into card classes and store them in
     def __init__(self):
-        self.Deck=[]
-        self.DeckString=[]
+        self.Deck=deque()
+        self.DeckString=deque()
         self.GenerateDeck()
         self.ShuffleDeck()
 
