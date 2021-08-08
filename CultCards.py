@@ -12,14 +12,6 @@ import random # Random generates numbers between 0 and 1.
 from collections import deque
 
 class Card: #Data set that allows to set all content of the card in this Data set
-    def  __init__(self):
-        self.__Acronym="?"
-        self.__Answer="?"
-        self.__Category="?"
-        self.__Hint="?"
-        self.__FrontofCard=self.GetFrontofCard()
-        self.__BackofCard=self.GetBackofCard()
-
     def  __init__(self,Acr,Ans,Cat,Hint): # setting the content of the card in this constructor
         self.__Acronym=Acr
         self.__Answer=Ans
