@@ -299,29 +299,25 @@ class GameManager():
                                 A=i[:-1]
                             else:
                                 A=i
-                        Result.append(A)
-                        if len(Modify) !=4:
-                            for i in range(4-len(Modify)):
-                                Result.append("?")
-                        if Result[1]=="?":
-                            print("CreationError: You must at least enter an Acronym and Answer and at most enter the Category and Hint\n")
-                            Result.clear()
-                        else:
-                            print(Result)
-                            Confirm=input("Is this your final Result (Y/N): ")
-                            Confirm=Confirm.upper()
-                            if Confirm[0]=="Y":
-                                Confirmation=self.PartyDeck.CreateCard(Result[0].upper(),Result[1],Result[2],Result[3])
-                                if Confirmation==False:
-                                    print("Sorry this acronym is already taken\n")
-                                else:
-                                    print("New Card has been created")
-                            else:
-                                pass
-
-
-            
-
+                            Result.append(A)
+            if len(Modify) !=4:
+                for i in range(4-len(Modify)):
+                    Result.append("?")
+            if Result[1]=="?":
+                print("CreationError: You must at least enter an Acronym and Answer and at most enter the Category and Hint\n")
+                Result.clear()
+            else:
+                print(Result)
+                Confirm=input("Is this your final Result (Y/N): ")
+                Confirm=Confirm.upper()
+                if Confirm[0]=="Y":
+                    Confirmation=self.PartyDeck.CreateCard(Result[0].upper(),Result[1],Result[2],Result[3])
+                    if Confirmation==False:
+                        print("Sorry this acronym is already taken\n")
+                    else:
+                        print("New Card has been created")
+                else:
+                    pass
 
 
 def main():
